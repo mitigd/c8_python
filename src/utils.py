@@ -1,4 +1,4 @@
-import threading, subprocess
+import threading, subprocess, os
 
 class Utils:
 
@@ -49,11 +49,11 @@ class Utils:
     
     def rom_selection(self):
 
-        # Specify the default folder
-        default_folder = '/home/mitigd/Projects/c++/class_share_again/build/linux/games/'
+        # Get the current working directory
+        current_directory = os.getcwd()
 
         # Run zenity to select a file
-        result = subprocess.run(['zenity', '--file-selection', '--filename', default_folder], capture_output=True, text=True)
+        result = subprocess.run(['zenity', '--file-selection', '--filename', current_directory], capture_output=True, text=True)
 
         # Check if zenity was successful and a file was selected
         if result.returncode == 0 and result.stdout.strip():
